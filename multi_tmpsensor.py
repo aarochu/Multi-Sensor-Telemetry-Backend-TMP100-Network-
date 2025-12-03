@@ -3,6 +3,7 @@ from fake_tmpsensor import FakeTMPSensor
 import threading
 
 class MultiTMPSensors:
+
     def __init__(self, use_fake=False):
         pass
 

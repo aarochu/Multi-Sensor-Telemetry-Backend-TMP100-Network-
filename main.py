@@ -1,7 +1,24 @@
 import argparse
-from multi_tmpsensors import MultiTMPSensors
+from tmpsensor import TMPSensor
+import smbus
+import RPi.GPIO as GPIO
+import time
+
 
 def main():
+
+    ADDRESS = 0x4f
+    TEMP_REG = 0x00
+    CONFIG_REG = 0x01
+    TLOW_REG = 0x10
+    HIGH_REG = 0x11
+    CHANNEL = 1
+
+    bus = smbus.SMBus(CHANNEL)
+    bus.write_byte_data(ADDRESS, 0x01, 0b1100000)
+
+    testtmp = TMPSensor(addr=0x4f, bus = None, reg = 0x00, interval=0.5)
+    testtmp.start()
     parser = argparse.ArgumentParser()
 
     args = parser.parse_args()
@@ -9,4 +26,5 @@ def main():
 
 
 if __name__ == "__main__":
+
     main()

@@ -9,7 +9,7 @@ class TMPSensor:
         self.interval = interval
         self.bus = bus if bus is not None else smbus.SMBus(1)
         self._buffer = []
-        self._latest = None
+        self._latest = None 
         self._running = False
         self._thread = None
 
@@ -25,6 +25,7 @@ class TMPSensor:
         while self._running:
             value = self.read_once()
             self._latest = value
+            print(value)
             self._buffer.append(value)
             time.sleep(self.interval)
 
