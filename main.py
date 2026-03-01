@@ -9,7 +9,6 @@ import time
 '''main.py --single  main.py --single --fake'''
 def main():
 
-    ADDRESS = 0x4f
     TEMP_REG = 0x00
     CONFIG_REG = 0x01
     TLOW_REG = 0x10
@@ -17,9 +16,11 @@ def main():
     CHANNEL = 1
 
     parser = argparse.ArgumentParser()
+    parser.add_argument("--address", type=lambda x: int(x, 0), default=0x4f, help="I2C address of sensor (e.g. 0x4f or 79)")
     parser.add_argument("--fake", action="store_true", help="Use fake sensors")
     parser.add_argument("--single", action="store_true", help="Run single TMPSensor + FakeTMPSensor instead of MultiTMPSensors")
     args = parser.parse_args()
+    ADDRESS = args.address
 
     if args.single:
         if not args.fake:
