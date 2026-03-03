@@ -6,7 +6,7 @@ import smbus
 import RPi.GPIO as GPIO
 import time
 
-'''main.py --single  main.py --single --fake'''
+'''main.py --single --address 0x4f  main.py --single --fake'''
 def main():
 
     TEMP_REG = 0x00
